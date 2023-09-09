@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="main">
+        <div class="content">        
+            {% block content %}
+            {% endblock %}
+            
+            <div class="bottom-panel">
+                <a href="#">
+                    <img src="{% static 'img/chat-icon.png' %}" alt="chat">
+                </a>
+
+                <a href="#">
+                    <img src="{% static 'img/search-icon.png' %}" alt="search">
+                </a>
+
+                <a href="#">
+                    <img src="{% static 'img/profile-default-icon.png' %}" alt="profile">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
