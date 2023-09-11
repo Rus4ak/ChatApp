@@ -36,6 +36,74 @@ h2 {
     width: 500px;
 }
 
+.authorization-form {
+    width: 80%;
+    margin-top: 25px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.authorization-form label {
+    float:left;
+    clear:both;
+    font-size: 22px;
+}
+
+.authorization-form input{
+    clear: both;
+    margin: 0 0 20px;
+    background: #efefef;
+    border: 1px solid black;
+    padding: 8px 5px;
+    font-size: 16px;
+    width: 97%;
+}
+
+.authorization-form input[type=submit] {
+    font-weight: bold;
+    border: 0;
+    background: darkcyan;
+    color: #fff;
+    padding: 10px 30px;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.authorization-form li {
+    color: #cc0033;
+    float: left;
+    clear: both;
+    padding: 0 0 20px 0;
+}
+
+.authorization-form a {
+    text-decoration: none;
+    margin-top: -25px;
+    font-size: 18px;
+}
+
+.authorization-form a:hover {
+    color: rgb(0, 0, 150);
+}
+
+.authorization-form p {
+    font-size: 22px;
+}
+
+.authorization-form p a {
+    font-size: 22px;
+}
+
+.authorization-form #reset-password {
+    float: right;
+}
+
+.authorization-form #sign-up {
+    float: left;
+}
+
 .bottom-panel {
     position: absolute;
     border-top:1px solid #bbb;
