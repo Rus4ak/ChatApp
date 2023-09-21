@@ -12,9 +12,9 @@
                 {{ post.description|linebreaks }}
             </h2>
         </div>
-        <a href="">Like</a>
+        <a href="{% url 'account:post_like' post_id=post.id %}">Like</a>
         <h3 style="left: 75px;">
-            {{ post.like|length }} like{{ post.like|pluralize }}
+            {{ post.likes.all|length }} like{{ post.likes.all|pluralize }}
         </h3>
         <h3>{{ post.created }}</h3>
     </div>

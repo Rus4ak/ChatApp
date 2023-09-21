@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .models import Profile, Post
 from .forms import UserRegisterForm, PostForm
@@ -22,7 +22,7 @@ def register(request):
 
 
 def profile(request, username):
-    user = User.objects.get(username=username)
+    user = get_object_or_404(User, username=username)
     user_icon = user.user_profile.first().icon
     user_posts = user.posts.all()
 
@@ -53,6 +53,17 @@ def create_post(request):
 
 
 def detail_post(request, post_id):
-    post = Post.objects.get(id=post_id)
+    post = get_object_or_404(Post, id=post_id)
+    
+    return render(request, 'account/detail_post.html', {'post': post})
+
+
+def post_like(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.user in post.likes.all():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
 
     return render(request, 'account/detail_post.html', {'post': post})
