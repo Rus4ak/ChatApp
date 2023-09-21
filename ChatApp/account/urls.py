@@ -23,5 +23,6 @@ urlpatterns = [
      path('password-reset/complete/', auth_views.PasswordResetCompleteView.as_view(), 
           name='password_reset_complete'),
      path('profile/<str:username>/', views.profile, name='profile'),
-     path('create_post/', views.create_post, name='create_post')
+     path('create_post/', views.create_post, name='create_post'),
+     path('detail_post/<int:post_id>/', views.detail_post, name='detail_post')
 ]

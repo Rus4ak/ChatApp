@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Post{% endblock %}
+
+{% block content %}
+    <h1>Post</h1>
+    <div class="detail-post">
+        <img src="{{ post.photo.url }}">
+        <div class="post-description">
+            <h2>{{ post.user.username }}</h2>
+            <h2 style="font-size: 20px; bottom: 300px;">
+                {{ post.description|linebreaks }}
+            </h2>
+        </div>
+        <a href="">Like</a>
+        <h3 style="left: 75px;">
+            {{ post.like|length }} like{{ post.like|pluralize }}
+        </h3>
+        <h3>{{ post.created }}</h3>
+    </div>
+{% endblock %}

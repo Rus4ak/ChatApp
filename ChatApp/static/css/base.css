@@ -163,3 +163,42 @@ h2 {
     height: 205px;
     width: 205px;
 }
+
+.detail-post img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.detail-post a {
+    position: relative;
+    bottom: 235px;
+    left: 10px;
+    text-decoration: none;
+    background: rgb(75, 210, 255);
+    color: black;
+    font-family: 'Muli', sans-serif; 
+    padding: 4px 14px 6px 14px;
+    border-radius: 15px;
+}
+
+.detail-post h3 {
+    position: relative;
+    bottom: 275px;
+    left: 15px;
+}
+
+.post-description {
+    position: relative;
+    overflow-y: scroll;
+    height: 250px;
+    left: 260px;
+    bottom: 250px;
+}
+
+.post-description h2 {
+    word-wrap: break-word;
+    width: 230px;
+    font-size: 30px;
+    margin-top: -10px;
+}

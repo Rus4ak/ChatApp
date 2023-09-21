@@ -17,7 +17,7 @@
         </div>
         <div class="profile-posts">
             {% for user_post in user_posts %}
-                <a href="">
+                <a href="{% url 'account:detail_post' post_id=user_post.id %}">
                     <img src="{{ user_post.photo.url }}">
                 </a>
             {% endfor %}

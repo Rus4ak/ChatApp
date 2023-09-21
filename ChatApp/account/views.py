@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Post
 from .forms import UserRegisterForm, PostForm
 
 
@@ -50,3 +50,9 @@ def create_post(request):
         post_form = PostForm()
     
     return render(request, 'account/create_post.html', {'form': post_form})
+
+
+def detail_post(request, post_id):
+    post = Post.objects.get(id=post_id)
+
+    return render(request, 'account/detail_post.html', {'post': post})
