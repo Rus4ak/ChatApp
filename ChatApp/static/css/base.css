@@ -96,6 +96,10 @@ h2 {
     font-size: 22px;
 }
 
+.authorization-form textarea {
+    resize: none;
+}
+
 .authorization-form #reset-password {
     float: right;
 }
@@ -106,10 +110,9 @@ h2 {
 
 .bottom-panel {
     position: absolute;
-    border-top:1px solid #bbb;
+    border-top: 1px solid #bbb;
     width: 100%;
     bottom: 5px;
-    padding-top: 10px;
 }
 
 .bottom-panel a {
@@ -119,5 +122,44 @@ h2 {
 .bottom-panel img {
     height: 60px;
     width: 60px;
-    padding: 0 50px 0 50px;
+    padding: 5px 52px 0 52px;
+}
+
+.selected {
+    border-top: 3px solid black;
+}
+
+.profile {
+    overflow-y: scroll;
+    height: 450px;
+}
+
+.profile-info img {
+    margin-left: 15px;
+    height: 125px;
+}
+
+.profile-info a {
+    position: relative;
+    bottom: 90px;
+    left: 10px;
+    text-decoration: none;
+    background: rgb(75, 210, 255);
+    color: black;
+    font-family: 'Muli', sans-serif; 
+    font-size: 20px;
+    font-weight: 600;
+    padding: 6px 10px 10px 10px;
+    border-radius: 15px;
+}
+
+.profile-posts a {
+    text-decoration: none;
+}
+
+.profile-posts img {
+    object-fit: cover;
+    margin: 15px;
+    height: 205px;
+    width: 205px;
 }

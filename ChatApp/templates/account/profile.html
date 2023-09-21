@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+    <h1>{{ user.username }}</h1>
+    <div class="profile">
+        <div class="profile-info">
+            <img src="{{ user_icon.url }}">
+            {% if user.username != request.user.username %}
+                <a href="">Send a message</a>
+            {% else %}
+                <a href="">Settings</a>
+                <a href="{% url 'account:create_post' %}">New post</a>
+            {% endif %}
+        </div>
+        <div class="profile-posts">
+            {% for user_post in user_posts %}
+                <a href="">
+                    <img src="{{ user_post.photo.url }}">
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

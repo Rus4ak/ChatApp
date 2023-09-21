@@ -2,6 +2,6 @@ from django.shortcuts import render, redirect
 
 def index(request):
     if request.user.is_authenticated:
-        return render(request, 'main/index.html')
+        return render(request, 'main/index.html', {'chat_selected': True})
     
     return redirect('account:login')

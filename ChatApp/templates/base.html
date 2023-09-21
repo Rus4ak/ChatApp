@@ -14,16 +14,16 @@
             {% endblock %}
             
             <div class="bottom-panel">
-                <a href="#">
-                    <img src="{% static 'img/chat-icon.png' %}" alt="chat">
+                <a href="{% url 'main:index' %}">
+                    <img src="{% static 'img/chat-icon.png' %}" alt="chat" {% if chat_selected %} class="selected" {% endif %}>
                 </a>
 
                 <a href="#">
-                    <img src="{% static 'img/search-icon.png' %}" alt="search">
+                    <img src="{% static 'img/search-icon.png' %}" alt="search" {% if search_selected %} class="selected" {% endif %}>
                 </a>
 
-                <a href="#">
-                    <img src="{% static 'img/profile-default-icon.png' %}" alt="profile">
+                <a href="{% url 'account:profile' username=request.user %}">
+                    <img src="{% static 'img/profile-default-icon.png' %}" alt="profile" {% if profile_selected %} class="selected" {% endif %}>
                 </a>
             </div>
         </div>

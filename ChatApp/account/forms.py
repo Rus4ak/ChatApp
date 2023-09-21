@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Post
 
 class UserRegisterForm(forms.ModelForm):
     username = forms.CharField(label='Username')    
@@ -13,6 +14,7 @@ class UserRegisterForm(forms.ModelForm):
 
 
     def clean_password2(self):
+        # Password validity check
         cd = self.cleaned_data
 
         if cd['password1'] != cd['password2']:
@@ -25,6 +27,7 @@ class UserRegisterForm(forms.ModelForm):
 
 
     def clean_email(self):
+        # Check if mail is already in use
         data = self.cleaned_data['email']
 
         if User.objects.filter(email=data).exists():
@@ -32,3 +35,8 @@ class UserRegisterForm(forms.ModelForm):
         
         return data
 
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['photo', 'description']
