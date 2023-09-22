@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .models import Profile, Post
-from .forms import UserRegisterForm, PostForm
+from .forms import UserRegisterForm, PostForm, UserForm, ProfileForm
 
 
 def register(request):
@@ -25,15 +25,40 @@ def profile(request, username):
     user = get_object_or_404(User, username=username)
     user_icon = user.user_profile.icon
     user_posts = user.posts.all()
-
+    all_likes = User.objects.filter(likes__in=user_posts).count()
+    
     context = {
         'profile_selected': True,
         'user': user,
         'user_icon': user_icon,
-        'user_posts': user_posts
+        'user_posts': user_posts,
+        'all_likes': all_likes
     }
 
     return render(request, 'account/profile.html', context)
+
+
+def settings_profile(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user, current_user=request.user)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.user_profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            
+            return redirect('account:profile', username=request.user)
+    
+    else:
+        user_form = UserForm(instance=request.user, current_user=request.user)
+        profile_form = ProfileForm()
+    
+    context = {
+        'user_form': user_form,
+        'profile_form': profile_form
+    }
+
+    return render(request, 'account/settings_profile.html', context)
 
 
 def create_post(request):

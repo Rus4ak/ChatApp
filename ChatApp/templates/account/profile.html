@@ -11,9 +11,13 @@
             {% if user.username != request.user.username %}
                 <a href="">Send a message</a>
             {% else %}
-                <a href="">Settings</a>
+                <a href="{% url 'account:settings_profile' %}">Settings</a>
                 <a href="{% url 'account:create_post' %}">New post</a>
             {% endif %}
+        </div>
+        <div class="profile-statistics">
+            <h2>{{ user_posts|length }} post{{ user_posts|pluralize }}</h2>
+            <h2>{{ all_likes }} like{{ all_likes|pluralize }}</h2>
         </div>
         <div class="profile-posts">
             {% for user_post in user_posts %}

@@ -131,12 +131,15 @@ h2 {
 
 .profile {
     overflow-y: scroll;
-    height: 450px;
+    height: 470px;
 }
 
 .profile-info img {
     margin-left: 15px;
+    border-radius: 70px;
     height: 125px;
+    width: 125px;
+    object-fit: cover;
 }
 
 .profile-info a {
@@ -151,6 +154,22 @@ h2 {
     font-weight: 600;
     padding: 6px 10px 10px 10px;
     border-radius: 15px;
+}
+
+.profile-statistics {
+    display: flex;
+}
+
+.profile-statistics h2 {
+    position: relative;
+    bottom: 90px;
+    left: 160px;
+    font-size: 20px;
+    margin-right: 25px;
+}
+
+.profile-posts {
+    margin-top: -70px;
 }
 
 .profile-posts a {
