@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+    <h1>Search</h1>
+    <div class="authorization-form">
+        <form method="get">
+            {{ form.as_p }}
+            <input type="submit" value="Search" style="margin-top: 0;">
+        </form>
+    </div>
+    <div class="search-result">
+        {% for user in result %}
+            <a href="{% url 'account:profile' username=user.username %}">
+                <div class="search-element">
+                    <img src="{{ user.user_profile.icon.url }}">
+                    <h2>{{ user.username }}</h2>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

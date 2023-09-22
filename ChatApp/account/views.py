@@ -23,7 +23,7 @@ def register(request):
 
 def profile(request, username):
     user = get_object_or_404(User, username=username)
-    user_icon = user.user_profile.first().icon
+    user_icon = user.user_profile.icon
     user_posts = user.posts.all()
 
     context = {

@@ -18,7 +18,7 @@
                     <img src="{% static 'img/chat-icon.png' %}" alt="chat" {% if chat_selected %} class="selected" {% endif %}>
                 </a>
 
-                <a href="#">
+                <a href="{% url 'main:search' %}">
                     <img src="{% static 'img/search-icon.png' %}" alt="search" {% if search_selected %} class="selected" {% endif %}>
                 </a>
 

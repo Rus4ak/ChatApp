@@ -202,3 +202,33 @@ h2 {
     font-size: 30px;
     margin-top: -10px;
 }
+
+.search-result {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 310px;
+}
+
+.search-result a {
+    text-decoration: none;
+    color: black;
+}
+
+.search-element {
+    background: #cacaca;
+    height: 50px;
+    margin: 15px;
+    padding: 10px 10px;
+    border-radius: 15px;
+}
+
+.search-element img {
+    height: 50px;
+    width: 50px;
+}
+
+.search-element h2 {
+    position: relative;
+    left: 65px;
+    bottom: 75px;
+}
