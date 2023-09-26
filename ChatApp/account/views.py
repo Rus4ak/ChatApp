@@ -83,7 +83,7 @@ def detail_post(request, post_id):
     return render(request, 'account/detail_post.html', {'post': post})
 
 
-def post_like(request, post_id):
+def like_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
 
     if request.user in post.likes.all():
@@ -92,3 +92,12 @@ def post_like(request, post_id):
         post.likes.add(request.user)
 
     return render(request, 'account/detail_post.html', {'post': post})
+
+
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    if post.user == request.user:
+        post.delete()
+    
+    return redirect('account:profile', username=request.user)

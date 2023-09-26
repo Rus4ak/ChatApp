@@ -12,10 +12,13 @@
                 {{ post.description|linebreaks }}
             </h2>
         </div>
-        <a href="{% url 'account:post_like' post_id=post.id %}">Like</a>
+        <a href="{% url 'account:like_post' post_id=post.id %}">Like</a>
         <h3 style="left: 75px;">
             {{ post.likes.all|length }} like{{ post.likes.all|pluralize }}
         </h3>
         <h3>{{ post.created }}</h3>
+        {% if post.user == request.user %}
+            <a href="{% url 'account:delete_post' post_id=post.id %}" style="background: rgb(250, 95, 95); bottom: 270px;">Delete post</a>
+        {% endif %}
     </div>
 {% endblock %}

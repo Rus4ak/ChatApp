@@ -79,10 +79,25 @@ WSGI_APPLICATION = 'ChatApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'chatapp',
         'USER': 'postgres',
+        'HOST': 'db',
         'PASSWORD': config('PASSWORD')
+    }
+}
+
+
+# Cache settings
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://redis:6379',
+        'TIMEOUT': None,
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
     }
 }
 
