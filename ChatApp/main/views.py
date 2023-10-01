@@ -1,12 +1,21 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.postgres.search import TrigramSimilarity
+from django.db.models import Max
 from .forms import SearchForm
-from .models import Chat, Message
+from .models import Chat
 
 def index(request):
     if request.user.is_authenticated:
-        return render(request, 'main/index.html', {'chat_selected': True})
+        chats = Chat.objects.filter(participants=request.user).annotate(
+            last_message=Max('messages__created')).order_by('-last_message')
+    
+        context = {
+            'chat_selected': True,
+            'chats': chats
+        }
+
+        return render(request, 'main/index.html', context)
     return redirect('account:login')
 
 
