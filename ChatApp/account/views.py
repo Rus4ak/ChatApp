@@ -28,7 +28,7 @@ def profile(request, username):
     all_likes = User.objects.filter(likes__in=user_posts).count()
     
     context = {
-        'profile_selected': True,
+        'profile_selected': request.user == user,
         'user': user,
         'user_icon': user_icon,
         'user_posts': user_posts,

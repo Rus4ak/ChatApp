@@ -9,7 +9,7 @@
         <div class="profile-info">
             <img src="{{ user_icon.url }}">
             {% if user.username != request.user.username %}
-                <a href="">Send a message</a>
+                <a href="{% url 'main:chat' user_id=user.pk %}">Send a message</a>
             {% else %}
                 <a href="{% url 'account:settings_profile' %}">Settings</a>
                 <a href="{% url 'account:create_post' %}">New post</a>

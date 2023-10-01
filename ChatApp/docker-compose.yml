@@ -17,7 +17,7 @@ services:
     env_file:
       - postgres.env
     ports:
-      - "5432:5432"
+      - "54325:5432"
 
   redis:
     image: redis

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}Chat{% endblock %}
+
+{% block content %}
+    <h1>Chat</h1>
+    <div class="chat" id="chat">
+        {% for message in chat.messages.all %}
+            <div class="message" {% if message.sender == request.user %}id="message-me"{% endif %}>
+                <strong>
+                    {% if message.sender == request.user %}
+                        Me
+                    {% else %}
+                        {{ message.sender }}
+                    {% endif %}
+                </strong>
+                <span>{{ message.created|date:'H:i' }}</span><br>
+                {{ message.content }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="chat-input">
+        <input type="text" placeholder="Write here..." id="chat-input">
+        <input type="submit" value="Send" id="chat-submit">
+    </div>
+{% endblock %}
+
+{% block js_script %}
+    {{ chat.id|json_script:"chat-id" }}
+    {{ request.user.pk|json_script:"current-user" }}
+
+    <script>
+        const chatId = JSON.parse(
+            document.getElementById('chat-id').textContent
+        );
+        const currentUser = JSON.parse(
+            document.getElementById('current-user').textContent
+        );
+        
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/chat/'
+            + chatId
+            + '/'
+        );
+
+        chatSocket.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            const dateOptions = {hour: 'numeric', minute: 'numeric', hour12: false};  
+            const datetime = new Date(data.datetime).toLocaleString('en', dateOptions);
+            const chat = document.getElementById('chat');
+            
+            username = data.sender;
+            id = '';
+
+            if (data.sender_id === currentUser) {
+                id = 'message-me';
+                username = 'Me';
+            }
+
+            chat.innerHTML += '<div class="message" id="' + id + '">' +
+                      '<strong>' + username + '</strong> ' +
+                      '<span>' + datetime + '</span><br>' +
+                      data.message + '</div>';
+
+            chat.scrollTop = chat.scrollHeight;
+        };
+
+        chatSocket.onclose = function(event) {
+            console.error('Chat socket closed');
+        };
+
+        const chatInput = document.getElementById('chat-input');
+        const chatSubmit = document.getElementById('chat-submit');
+
+        chatSubmit.addEventListener('click', function(event) {
+            const text = chatInput.value;
+
+            if (text) {
+                chatSocket.send(JSON.stringify({'message': text}));
+                chatInput.value = '';
+                chatInput.focus();
+            }
+        });
+
+        chatInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                chatSubmit.click();
+            }
+        });
+
+        chat.scrollTop = chat.scrollHeight;
+        chatInput.focus();
+    </script>
+{% endblock %}
