@@ -4,4 +4,45 @@
 
 {% block content %}
     <h1>Chats</h1>
+    <div class="chat-list">
+        {% for chat in chats %}
+            {% with chat.participants.last as user %}
+                {% if user.pk == request.user.pk %}
+                    {% with chat.participants.first as user %}
+                        <a href="{% url 'main:chat' user_id=user.pk %}">
+                            <div class="chat-element">
+                            <img src="{{ user.user_profile.icon.url }}">
+                            <h2>{{ user.username }}</h2>
+                            <div class="last_message">
+                                {% with chat.messages.all.last as last_message %}
+                                    <strong>{{ last_message.content }}</strong>
+                                    <span>{{ last_message.created }}</span>
+                                        {% if not last_message %}
+                                            <strong>This chat is empty.</strong>
+                                        {% endif %}
+                                    {% endwith %}
+                                </div>
+                            </div>
+                        </a>
+                    {% endwith %}
+                {% else %}
+                    <a href="{% url 'main:chat' user_id=user.pk %}">
+                        <div class="chat-element">
+                        <img src="{{ user.user_profile.icon.url }}">
+                        <h2>{{ user.username }}</h2>
+                        <div class="last_message">
+                            {% with chat.messages.all.last as last_message %}
+                                <strong>{{ last_message.content }}</strong>
+                                <span>{{ last_message.created }}</span>
+                                    {% if not last_message %}
+                                        <strong>This chat is empty.</strong>
+                                    {% endif %}
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </a>
+                {% endif %}
+            {% endwith %}
+        {% endfor %}
+    </div>
 {% endblock %}

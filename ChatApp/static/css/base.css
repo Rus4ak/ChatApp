@@ -252,8 +252,58 @@ h2 {
     bottom: 75px;
 }
 
+.chat-list {
+    width: 100%;
+    height: 470px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.chat-list a {
+    text-decoration: none;
+    color: black;
+}
+
+.chat-element {
+    background: lightgray;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 10px 0;
+    word-wrap: break-word;
+    height: 70px;
+}
+
+.chat-element img {
+    width: 70px;
+    height: 70px;
+}
+
+.chat-element h2 {
+    position: relative;
+    left: 80px;
+    bottom: 105px;
+}
+
+.chat-element strong {
+    position: relative;
+    left: 80px;
+    bottom: 115px;
+    font-size: 18px;
+    font-weight: 100;
+    display: block;
+    width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chat-element span {
+    position: relative;
+    float: right;
+    bottom: 135px;
+}
+
 .chat {
-    /* background: #cc0033; */
     width: 100%;
     height: 430px;
     overflow-y: scroll;
@@ -304,7 +354,6 @@ h2 {
 .message span {
     position: relative;
     color: black;
-    font-style: italic;
     font-size: 12px;
     left: 5px;
 }
