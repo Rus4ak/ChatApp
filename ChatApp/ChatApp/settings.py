@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'account',
     'main',
+    'api',
     'channels',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -87,6 +89,15 @@ DATABASES = {
         'HOST': 'db',
         'PASSWORD': config('PASSWORD')
     }
+}
+
+
+# Django rest framework settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    ],
 }
 
 
