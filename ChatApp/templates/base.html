@@ -15,6 +15,9 @@
             
             <div class="bottom-panel">
                 <a href="{% url 'main:index' %}">
+                    {% if new_messages_length %}
+                        <h2>{{ new_messages_length }}</h2>
+                    {% endif %}
                     <img src="{% static 'img/chat-icon.png' %}" alt="chat" {% if chat_selected %} class="selected" {% endif %}>
                 </a>
 

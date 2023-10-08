@@ -119,6 +119,16 @@ h2 {
     color: white;
 }
 
+.bottom-panel a h2 {
+    position: absolute;
+    background: #cc0033;
+    bottom: 15px;
+    left: 100px;
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 50px;
+}
+
 .bottom-panel img {
     height: 60px;
     width: 60px;
@@ -295,6 +305,17 @@ h2 {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.chat-element h3 {
+    position: absolute;
+    background: #cc0033;
+    color: white;
+    margin-top: -175px;
+    margin-left: 420px;
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 50px;
 }
 
 .chat-element span {
