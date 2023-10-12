@@ -6,16 +6,21 @@
     <h1>Chat</h1>
     <div class="chat" id="chat">
         {% for message in chat.messages.all %}
-            <div class="message" {% if message.sender == request.user %}id="message-me"{% endif %}>
-                <strong>
-                    {% if message.sender == request.user %}
-                        Me
-                    {% else %}
-                        {{ message.sender }}
-                    {% endif %}
-                </strong>
-                <span>{{ message.created|date:'H:i' }}</span><br>
-                {{ message.content }}
+            <div class="message-container">
+                {% if first_new_message == message %}
+                    <h2>New messages</h2>
+                {% endif %}
+                <div class="message" {% if message.sender == request.user %}id="message-me"{% endif %}>
+                    <strong>
+                        {% if message.sender == request.user %}
+                            Me
+                        {% else %}
+                            {{ message.sender }}
+                        {% endif %}
+                    </strong>
+                    <span>{{ message.created|date:'H:i' }}</span><br>
+                    {{ message.content }}
+                </div>
             </div>
         {% endfor %}
     </div>
@@ -59,10 +64,11 @@
                 username = 'Me';
             }
 
-            chat.innerHTML += '<div class="message" id="' + id + '">' +
+            chat.innerHTML += '<div class="message-container">' +
+                      '<div class="message" id="' + id + '">' +
                       '<strong>' + username + '</strong> ' +
                       '<span>' + datetime + '</span><br>' +
-                      data.message + '</div>';
+                      data.message + '</div></div>';
 
             chat.scrollTop = chat.scrollHeight;
         };

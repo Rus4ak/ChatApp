@@ -328,6 +328,19 @@ h2 {
     width: 100%;
     height: 430px;
     overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.chat h2 {
+    text-align: center;
+    background: #fff;
+    border: 1px solid black;
+    font-size: 18px;
+    border-radius: 30px;
+    padding: 5px;
+    width: 400px;
+    margin-left: 25px;
+    margin-top: 5px;
 }
 
 .chat-input {
@@ -365,11 +378,14 @@ h2 {
     background: lightgray;
     padding: 10px;
     border-radius: 10px;
-    width: auto;
+    width: 250px;
+}
+
+.message-container {
+    border-radius: 10px;
     float: left;
     margin: 10px 10px 0;
-    word-wrap: break-word;
-    width: 250px;
+    width: 460px;
 }
 
 .message span {

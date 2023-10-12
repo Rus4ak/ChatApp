@@ -46,8 +46,8 @@ def search(request):
 
 
 def chat(request, user_id):
-    ''' Creates a new chat if it already exists shows all messages in this chat
-    and the number of 'unread' messages '''
+    ''' Creates a new chat if it already exists shows all messages
+    in this chat and changes unread messages to read '''
 
     chat = Chat.objects.filter(participants=request.user).filter(participants=user_id).first()
 
@@ -56,11 +56,13 @@ def chat(request, user_id):
         chat.participants.add(request.user.pk, user_id)
         chat.save()
     
+    first_new_message = chat.messages.all().filter(is_read=False).exclude(sender=request.user).first()
     chat.messages.all().filter(is_read=False).exclude(sender=request.user).update(is_read=True)
     
     context = {
         'chat_selected': True,
-        'chat': chat
+        'chat': chat,
+        'first_new_message': first_new_message
     }
 
     return render(request, 'main/chat.html', context)

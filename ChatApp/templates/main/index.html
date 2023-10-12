@@ -17,11 +17,13 @@
                             <div class="last-message">
                                 {% with chat.messages.last as last_message %}
                                     <strong>{{ last_message.content }}</strong>
-                                    {% if not last_message.is_read %}
-                                        {% if last_message.sender != request.user %}
-                                            <h3>{{ chat.id|new_messages_count:request.user }}</h3>
+                                    {% if last_message %}
+                                        {% if not last_message.is_read %}
+                                            {% if last_message.sender != request.user %}
+                                                <h3>{{ chat.id|new_messages_count:request.user }}</h3>
+                                            {% endif %}
                                         {% endif %}
-                                    {% endif %}
+                                    {% endif %}    
                                     <span>{{ last_message.created }}</span>
                                         {% if not last_message %}
                                             <strong>This chat is empty.</strong>
@@ -39,11 +41,13 @@
                         <div class="last_message">
                             {% with chat.messages.last as last_message %}
                                 <strong>{{ last_message.content }}</strong>
-                                {% if not last_message.is_read %}
-                                    {% if last_message.sender != request.user %}
-                                        <h3>{{ chat.id|new_messages_count:request.user }}</h3>
+                                {% if last_message %}
+                                    {% if not last_message.is_read %}
+                                        {% if last_message.sender != request.user %}
+                                            <h3>{{ chat.id|new_messages_count:request.user }}</h3>
+                                        {% endif %}
                                     {% endif %}
-                                {% endif %}
+                                {% endif %}  
                                 <span>{{ last_message.created }}</span>
                                     {% if not last_message %}
                                         <strong>This chat is empty.</strong>

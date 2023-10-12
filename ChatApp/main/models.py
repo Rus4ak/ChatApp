@@ -12,4 +12,10 @@ class Message(models.Model):
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False, blank=True)
+
+    class Meta:
+        ordering = ['id']
+        indexes = [
+            models.Index(fields=['id'])
+        ]
     
